@@ -27,6 +27,7 @@ export default class Tuner {
   };
 
   constructor(onNoteDetected) {
+
     this.pitchFinder = new PitchFinder.YIN({
       sampleRate: this.options.sampleRate,
     });
@@ -46,6 +47,7 @@ export default class Tuner {
   }
 
   initMic() {
+
     LiveAudioStream.init(this.options);
     LiveAudioStream.on('data', (data) => {
       const chunk = Buffer.from(data, 'base64');
@@ -55,6 +57,7 @@ export default class Tuner {
         this.onNoteDetected(note);
       }
     });
+
   }
 
   /**
@@ -78,6 +81,7 @@ export default class Tuner {
    * @returns {number}
    */
   getNote(frequency) {
+
     const note = 12 * (Math.log(frequency / this.middleA) / Math.log(2));
     return Math.round(note) + this.semitone;
   }

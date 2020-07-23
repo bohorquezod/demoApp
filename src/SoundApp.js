@@ -1,10 +1,7 @@
 import React, {useState} from 'react';
 import {Text, Button, View} from 'react-native';
-
 import PlayCMajor from './components/PlayCMajor';
-
 import Tuner from './utils/tuner';
-
 import CMAJOR from './constants/cmajor';
 
 const styles = {
@@ -69,13 +66,9 @@ const SoundApp: () => React$Node = () => {
       <View>
         <PlayCMajor />
       </View>
-
       <Button title={noteDetectorTitle} onPress={toogleNoteDetector} />
-
       <Text>Note detector status: {getOnOrOffByBoolean(isRecording)}</Text>
-
       <Text>Note detected: {getNoteName() || 'N/A'}</Text>
-
       <View style={styles.row}>
         {CMAJOR.map((note) => {
           const isActive = targetNote === note;

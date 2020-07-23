@@ -3,6 +3,7 @@
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
+#import <AVFoundation/AVFoundation.h>
 
 #if DEBUG
 #import <FlipperKit/FlipperClient.h>
@@ -27,6 +28,39 @@ static void InitializeFlipper(UIApplication *application) {
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  
+//  AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+//  NSError *setCategoryError = nil;
+//  [audioSession setCategory:[AVAudioSessionCategoryPlayback,AVAudioSessionCategoryOptionMixWithOthers]
+//                      error:&setCategoryError];
+//
+//   [audioSession setCategory:AVAudioSessionCategoryOptionMixWithOthers
+//                        error:&setCategoryError
+//   ];
+  
+  
+  @try {
+    [[AVAudioSession sharedInstance]
+       setCategory:AVAudioSessionCategoryPlayback
+//     withOptions:AVAudioSessionCategoryOptionMixWithOthers error:nil];
+     withOptions:AVAudioSessionCategoryOptionDuckOthers error:nil];
+     [[AVAudioSession sharedInstance]
+      setActive:YES error:nil] ;
+  } @catch (NSException *exception) {
+    
+  } @finally {
+    
+  }
+  [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+  
+  
+  
+//
+//    let audioSession = AVAudioSession.sharedInstance()
+//    _ = try? audioSession.setCategory([.playback,.mixWithOthers], options: .defaultToSpeaker)
+//    _ = try? audioSession.setActive(true)
+  
+  
 #if DEBUG
   InitializeFlipper(application);
 #endif

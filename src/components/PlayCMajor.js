@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import {Text, Button} from 'react-native';
-
 import soundPlayer from '../utils/soundPlayer';
 import CMAJOR from '../constants/cmajor';
 
 const PlayCMajor: () => React$Node = () => {
-  const [notePlaying, setNotePlaying] = useState('');
+
+const [notePlaying, setNotePlaying] = useState('');
 
   const playSound = async (note) => {
     setNotePlaying(note);
@@ -15,6 +15,7 @@ const PlayCMajor: () => React$Node = () => {
 
   const playCMajor = async () => {
     for (const currentNote of CMAJOR) {
+     // alert(currentNote)
       await playSound(currentNote);
     }
   };
@@ -22,7 +23,6 @@ const PlayCMajor: () => React$Node = () => {
   return (
     <>
       <Button title="Play C Major Scale" onPress={playCMajor} />
-
       <Text>Playing: {notePlaying || 'N/A'}</Text>
     </>
   );
